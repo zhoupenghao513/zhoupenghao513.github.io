@@ -24,11 +24,11 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="ctfshow_web_反序列化">
 <meta property="og:url" content="http://example.com/2023/02/02/ctfshow-web-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/index.html">
-<meta property="og:site_name" content="小zhou不会打ctf.png">
+<meta property="og:site_name" content="not coder">
 <meta property="og:description" content="持续学习中。。。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-02T01:48:12.000Z">
-<meta property="article:modified_time" content="2023-02-17T13:34:41.895Z">
+<meta property="article:modified_time" content="2023-02-23T13:24:24.149Z">
 <meta property="article:author" content="小zhou">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>ctfshow_web_反序列化 | 小zhou不会打ctf.png</title>
+  <title>ctfshow_web_反序列化 | not coder</title>
   
 
 
@@ -97,7 +97,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">小zhou不会打ctf.png</h1>
+      <h1 class="site-title">not coder</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -175,7 +175,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小zhou不会打ctf.png">
+      <meta itemprop="name" content="not coder">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -196,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-17 21:34:41" itemprop="dateModified" datetime="2023-02-17T21:34:41+08:00">2023-02-17</time>
+                <time title="修改时间：2023-02-23 21:24:24" itemprop="dateModified" datetime="2023-02-23T21:24:24+08:00">2023-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -218,7 +218,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
+              <span>3.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -331,9 +331,26 @@
 <p>连接url&#x2F;877.php</p>
 <p>执行1&#x3D;system(“ls &#x2F;“);</p>
 <p>发现ctfshow{64baf76c-41a0-4795-922a-17076ed94eb2}</p>
-<h1 id="web263"><a href="#web263" class="headerlink" title="web263"></a>web263</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">message</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$from</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$msg</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$to</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$token</span>=<span class="string">&#x27;user&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$f</span>,<span class="variable">$m</span>,<span class="variable">$t</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="keyword">from</span> = <span class="variable">$f</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;msg = <span class="variable">$m</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;to = <span class="variable">$t</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$f</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;f&#x27;</span>];</span><br><span class="line"><span class="variable">$m</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;m&#x27;</span>];</span><br><span class="line"><span class="variable">$t</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;t&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$f</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$m</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$t</span>))&#123;</span><br><span class="line">    <span class="variable">$msg</span> = <span class="keyword">new</span> <span class="title function_ invoke__">message</span>(<span class="variable">$f</span>,<span class="variable">$m</span>,<span class="variable">$t</span>);</span><br><span class="line">    <span class="variable">$umsg</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;fuck&#x27;</span>, <span class="string">&#x27;loveU&#x27;</span>, <span class="title function_ invoke__">serialize</span>(<span class="variable">$msg</span>));</span><br><span class="line">    <span class="title function_ invoke__">setcookie</span>(<span class="string">&#x27;msg&#x27;</span>,<span class="title function_ invoke__">base64_encode</span>(<span class="variable">$umsg</span>));</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Your message has been sent&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="web263"><a href="#web263" class="headerlink" title="web263"></a>web263</h2><p>不会</p>
+<h2 id="web265"><a href="#web265" class="headerlink" title="web265"></a>web265</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctfshowAdmin</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$token</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$t</span>,<span class="variable">$p</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;token=<span class="variable">$t</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;password = <span class="variable">$p</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;token===<span class="variable language_">$this</span>-&gt;password;</span><br><span class="line">    &#125;<span class="comment">//使token=password 得return 1; echo flag</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$ctfshow</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;ctfshow&#x27;</span>]);</span><br><span class="line"><span class="variable">$ctfshow</span>-&gt;token=<span class="title function_ invoke__">md5</span>(<span class="title function_ invoke__">mt_rand</span>());</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$ctfshow</span>-&gt;<span class="title function_ invoke__">login</span>())&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>token的值等于一个随机数，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class ctfshowAdmin</span><br><span class="line">&#123;</span><br><span class="line">    public $password;</span><br><span class="line">    public $token;</span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;password = &amp;$this-&gt;token;</span><br><span class="line">    &#125;//不能直接等于</span><br><span class="line">&#125;</span><br><span class="line">$a = new ctfshowAdmin();</span><br><span class="line">echo serialize($a);</span><br></pre></td></tr></table></figure>
 
+<p>引用（&amp;）的用法和应用</p>
+<p>在PHP 中引用的意思是：<strong>不同的名字访问同一个变量内容</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alsf/p/9621362.html">https://www.cnblogs.com/alsf/p/9621362.html</a></p>
+<p>ctfshow{b3af121a-ce30-4452-a80f-9701f229041c}</p>
+<h2 id="web266"><a href="#web266" class="headerlink" title="web266"></a>web266</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line"><span class="variable">$cs</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;php://input&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctfshow</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$username</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$u</span>,<span class="variable">$p</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;username=<span class="variable">$u</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;password=<span class="variable">$p</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;username===<span class="variable language_">$this</span>-&gt;password;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;username;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">global</span> <span class="variable">$flag</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$ctfshowo</span>=@<span class="title function_ invoke__">unserialize</span>(<span class="variable">$cs</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/ctfshow/&#x27;</span>, <span class="variable">$cs</span>))&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="string">&quot;Error <span class="subst">$ctfshowo</span>&quot;</span>,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CTFSHOW</span></span>&#123;&#125;</span><br><span class="line"><span class="variable">$a</span>=<span class="keyword">new</span> <span class="title function_ invoke__">CTFSHOW</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:7:&quot;CTFSHOW&quot;:0:&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>PHP特性：函数名和类名不区分大小写，变量名区分。</p>
+<p>经过尝试hackbar,不能post  php:&#x2F;&#x2F;input,除了max hackbar,传参得到</p>
+<p>ctfshow{2769a98f-097f-4919-aa09-f64ef83591dd}</p>
+<h2 id="web267"><a href="#web267" class="headerlink" title="web267"></a>web267</h2>
     </div>
 
     
@@ -436,7 +453,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#web254-%E2%80%93php%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">web254 –php类和对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">1、定义类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E6%88%90%E5%91%98%E5%B1%9E%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">2、成员属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E6%88%90%E5%91%98%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">3、成员方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web255-%E2%80%93%E8%AE%A4%E8%AF%86%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">web255 –认识反序列化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web256"><span class="nav-number">6.</span> <span class="nav-text">web256</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web257"><span class="nav-number">7.</span> <span class="nav-text">web257</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web258"><span class="nav-number"></span> <span class="nav-text">web258</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web260"><span class="nav-number"></span> <span class="nav-text">web260</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web261"><span class="nav-number"></span> <span class="nav-text">web261</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web263"><span class="nav-number"></span> <span class="nav-text">web263</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#web254-%E2%80%93php%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">web254 –php类和对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">1、定义类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E6%88%90%E5%91%98%E5%B1%9E%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">2、成员属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E6%88%90%E5%91%98%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">3、成员方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web255-%E2%80%93%E8%AE%A4%E8%AF%86%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">web255 –认识反序列化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web256"><span class="nav-number">6.</span> <span class="nav-text">web256</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web257"><span class="nav-number">7.</span> <span class="nav-text">web257</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web258"><span class="nav-number"></span> <span class="nav-text">web258</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web260"><span class="nav-number"></span> <span class="nav-text">web260</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web261"><span class="nav-number"></span> <span class="nav-text">web261</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#web263"><span class="nav-number">1.</span> <span class="nav-text">web263</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web265"><span class="nav-number">2.</span> <span class="nav-text">web265</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web266"><span class="nav-number">3.</span> <span class="nav-text">web266</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web267"><span class="nav-number">4.</span> <span class="nav-text">web267</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -452,20 +469,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -501,12 +518,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">16k</span>
+    <span title="站点总字数">17k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">59 分钟</span>
+    <span title="站点阅读时长">1:01</span>
 </div>
 
 <!--
